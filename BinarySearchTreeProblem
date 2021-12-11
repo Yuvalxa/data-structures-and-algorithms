@@ -1,0 +1,88 @@
+https://static.packt-cdn.com/products/9781789801736/graphics/C09581_08_02.jpg <- tree
+
+///
+typedef int itemType;
+typedef struct node
+{
+	itemType info;
+	struct node *left;
+	struct node *right;
+
+}tree_node, *tree_ptr;
+
+void rangeSearch(tree_ptr t, itemType u, itemType v);
+void createTree(tree_ptr t);
+////
+
+
+void createTree(tree_ptr t)
+{
+	t->info = 7;
+	t->left = (tree_ptr)malloc(sizeof(tree_node));
+	t->left->info = 5;
+	t->left->right = (tree_ptr)malloc(sizeof(tree_node));
+	t->left->right->info = 6;
+	t->left->right->right = NULL;
+	t->left->right->left = NULL;
+	t->left->left = (tree_ptr)malloc(sizeof(tree_node));
+	t->left->left->info = 3;
+	t->left->left->left = (tree_ptr)malloc(sizeof(tree_node));
+	t->left->left->left->info = 1;
+	t->left->left->left->right = NULL;
+	t->left->left->left->left = NULL;
+	t->left->left->right = (tree_ptr)malloc(sizeof(tree_node));
+	t->left->left->right->info = 4;
+	t->left->left->right->right = NULL;
+	t->left->left->right->left = NULL;
+
+	t->right = (tree_ptr)malloc(sizeof(tree_node));
+	t->right->info = 12;
+	t->right->left = (tree_ptr)malloc(sizeof(tree_node));
+	t->right->left->info = 9;
+	t->right->left->left = (tree_ptr)malloc(sizeof(tree_node));
+	t->right->left->left->info = 8;
+	t->right->left->left->left = NULL;
+	t->right->left->left->right = NULL;
+	t->right->left->right = (tree_ptr)malloc(sizeof(tree_node));
+	t->right->left->right->info = 10;
+	t->right->left->right->left = NULL;
+	t->right->left->right->right = NULL;
+	t->right->right = (tree_ptr)malloc(sizeof(tree_node));
+	t->right->right->info = 15;
+	t->right->right->left = (tree_ptr)malloc(sizeof(tree_node));
+	t->right->right->left->info = 13;
+	t->right->right->left->left = NULL;
+	t->right->right->left->right = NULL;
+	t->right->right->right = (tree_ptr)malloc(sizeof(tree_node));
+	t->right->right->right->info = 17;
+	t->right->right->right->left = NULL;
+	t->right->right->right->right = NULL;
+}
+
+void rangeSearch(tree_ptr t, itemType u, itemType v)
+{
+	if (u > v) return;
+
+	if (t->left != NULL)
+		if (t->info > u)
+			if(t->info < v) // wont find info larger than t->info in left tree
+				rangeSearch(t->left, u, t->info);
+			else
+				rangeSearch(t->left, u, v);
+
+	if (t->info <= v && t->info >= u) printf("| %d |", t->info);
+	
+	if(t->right != NULL)
+		if (t->info < v)
+			if (t->info > u) // wont find info smaller than t->info in right tree
+				rangeSearch(t->right, t->info, v);
+			else
+				rangeSearch(t->right, u, v);
+}
+
+void main()
+{
+	tree_node tree;
+	createTree(&tree);
+	rangeSearch(&tree, 9, 17);
+}

@@ -1,0 +1,3 @@
+a)	Describe an O(1) time algorithm that determines whether or not there exists an element x, such that A[1] < x < A[n] and x is not in A.
+b)	Describe an O(logn) time algorithm that finds such an x.
+c)	Describe an efficient algorithm that determines whether or not there exists an element i in A, such that A[i]=i. Analyze the running time of the algorithm.

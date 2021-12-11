@@ -1,0 +1,22 @@
+/* A - n sized integer array, k - integer, B - k+1 sized indexes sequence array */
+/* for each Element in array B - each sequence of B(i)-B(i-1) (i=1..k) equals to n/k */
+/* for two indexes p and q in array A, if p<=B(i)<q for 1<i<k, we can assume A[p] < A[q] */
+/* Describe an algorithm that finds the index of element z in array A for runtime of O((n/k)*logk) at most */
+
+int Q6(int A[], int B[], int n, int k, int z, int start,int end)
+{
+ 	if(start > end) return -1; // element z not found
+	int med = (start + end) / 2;
+	int Bmed = B[med];
+	if (A[Bmed] == z) return Bmed;
+	if (A[Bmed] > z)
+		return Q6(A, B, n, k, z, start, med - 1);
+	else {
+		for (int i = Bmed + 1; i < Bmed + (n / k); i++)
+			if (A[i] == z) return i;
+		if(A[B[med+1]] > z)
+			return Q6(A, B, n, k, z, start, med - 1);
+		else
+			return Q6(A, B, n, k, z, med + 1, end);
+	}
+}

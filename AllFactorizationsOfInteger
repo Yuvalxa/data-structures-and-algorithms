@@ -1,0 +1,49 @@
+int divideNumByNum(int n, int currsize, int arr[])
+{
+	// function gets number n, current size we wish to factorize and a array
+	// currsize - current size of factorization we require 
+	// num - the number we want to factorize(backtracking)
+	// arr - size N array of integers to save all different options of the current size of factorization
+	// count - saves the amount of factorization options we found
+	// when a valid factorization is found(n==0), the function prints the current solution
+	int num, count = 0;
+	if (n == 0)
+	{
+		for (int j = 0; j < currsize; j++) {
+			printf("%d ", arr[j]);
+			if (j != currsize - 1)
+				printf("+ ");
+		}
+		printf("\n");
+		return 1;
+	}
+	if (n < 0 || currsize == N)
+	{
+		printf("\n");
+		return 0;
+	}
+	for (int i = 0; i < n; i++)
+	{
+		num = n - i;
+		if (!(num % 2) == 0)
+		{
+			if (!(currsize != 0 && arr[currsize - 1] < num))
+			{
+				arr[currsize] = num;
+				count += divideNumByNum(n - num, currsize + 1, arr);
+			}
+		}
+	}
+	return count;
+}
+
+/*
+void main()
+{
+	// number - the number we want to factorize(max N times)
+	// arr - initialize size N array of integers to save all different options of the current size of factorization
+	int arr[N] = { 0 };
+	int number = 7;
+	printf("those are %d options to factorize %d with max N=%d\n", divideNumByNum(number, 0, arr), number, N);
+}
+*/

@@ -1,0 +1,60 @@
+void printSolution(int board[N])
+{
+	// when called, printSolutions prints the solution in array board
+	printf("{");
+	for (int i = 0; i < N; i++)
+	{
+		if (i + 1 != N)
+			printf("%d,", board[i]);
+		else
+			printf("%d", board[i]);
+	}
+	printf("}\n");
+}
+
+void TR_Solutions(int board[N], int column, int used[3][DIAG], int* sol)
+{
+	// sol - current number of solution
+	if (column < 0 || column > N)
+		return;
+	if (column == N) // column = N -> reached a solution
+	{
+		printf("found solutin: %d\n", *sol);
+		*sol = *sol + 1;
+		printSolution(board);
+		return;
+	}
+	for (int m = 0; m < N; m++) // all possible first steps
+	{
+		int row = m;
+		if (used[0][row] != 1 && used[1][N - 1 - column + row] != 1 && used[2][row + column] != 1)
+		{
+			// then valid placement
+			board[column] = row;
+			used[0][row] = 1;
+			used[1][N - 1 - column + row] = 1;
+			used[2][row + column] = 1;
+			TR_Solutions(board, column + 1, used, sol);
+			// zero all queen's placement in order to find other solutions
+			used[0][row] = 0;
+			used[1][N - 1 - column + row] = 0;
+			used[2][row + column] = 0;
+		}
+	}
+	return;
+}
+
+/*
+void main()
+{
+	int board[N] = { 0 };
+	int used[3][DIAG];
+	int sol = 1;
+	for (int i = 0; i < 3; i++)
+		for (int j = 0; j < DIAG; j++)
+			used[i][j] = 0;
+	printf("Solving the %d Queens Problem\n\n", N);
+	TR_Solutions(board, 0, used,&sol);
+	printf("\nDone!\n");
+}
+*/

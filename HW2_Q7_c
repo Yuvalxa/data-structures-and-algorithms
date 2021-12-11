@@ -1,0 +1,14 @@
+/* c)	Describe an efficient algorithm that determines whether or not there exists an element i in A, such that A[i]=i. Analyze the running time of the algorithm. */
+
+int Q7c(int A[], int start, int end)
+{
+	if (end < start)
+		return 0;
+	int m = (end + start)/2;
+	if (A[m] == m)
+		return 1;
+	if (A[m] > m)
+		return Q7c(A, start, m - 1);
+	else
+		return Q7c(A, m + start, end);
+}

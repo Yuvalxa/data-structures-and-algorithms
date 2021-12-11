@@ -1,0 +1,6 @@
+/*Describe an O(1) time algorithm that determines whether or not there exists an element x, such that A[1] < x < A[n] and x is not in A.*/
+
+int Q7a(int A[], int start, int end)
+{
+	return A[end] - A[start] > end - start;
+}

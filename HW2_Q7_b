@@ -1,0 +1,13 @@
+/*b)	Describe an O(logn) time algorithm that finds such an x.*/
+
+/* Q7a - determines whether or not there exists an element x, such that A[1] < x < A[n] and x is not in A. */
+
+int Q7b(int A[], int start, int end)
+{
+	if (start + 1 == end) return A[start] + 1;
+	int med = (start + end) / 2;
+	if (Q7a(A, start, med))
+		return Q7b(A, start + 1, med);
+	else
+		return Q7b(A, med + 1, end);
+}
