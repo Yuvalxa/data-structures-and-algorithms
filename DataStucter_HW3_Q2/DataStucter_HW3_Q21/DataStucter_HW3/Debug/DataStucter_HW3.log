@@ -1,0 +1,4 @@
+﻿  Node.c
+c:\users\yuval\source\repos\datastucter_hw3\datastucter_hw3\node.c(40): warning C4029: declared formal parameter list different from definition
+c:\users\yuval\source\repos\datastucter_hw3\datastucter_hw3\node.c(42): warning C4244: 'function': conversion from 'time_t' to 'unsigned int', possible loss of data
+  DataStucter_HW3.vcxproj -> C:\Users\yuval\source\repos\DataStucter_HW3\Debug\DataStucter_HW3.exe

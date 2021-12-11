@@ -1,0 +1,5 @@
+﻿  Node.c
+c:\users\tamir\source\repos\project\project\node.c(15): warning C4244: 'function': conversion from 'time_t' to 'unsigned int', possible loss of data
+  main.c
+  Generating Code...
+  Project.vcxproj -> C:\Users\tamir\source\repos\Project\Debug\Project.exe
